@@ -2,6 +2,7 @@ HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 /.mvn/
+/src/main/resources/application-credentials.properties
 
 ### STS ###
 .apt_generated

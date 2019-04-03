@@ -12,8 +12,8 @@ public class MailingController {
     @Autowired
     private MailingService mailingService;
 
-    @PostMapping("/mail")
-    public void sendEmail(@Valid @RequestBody Email email) {
-        mailingService.send(email);
+    @PostMapping("/contact")
+    public void contact(@Valid @RequestBody Email email) {
+        mailingService.contactUs(email);
     }
 }
