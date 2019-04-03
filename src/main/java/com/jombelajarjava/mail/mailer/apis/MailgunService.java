@@ -2,7 +2,6 @@ package com.jombelajarjava.mail.mailer.apis;
 
 import com.jombelajarjava.mail.mailer.Email;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,7 +18,6 @@ import static com.jombelajarjava.mail.mailer.utils.EmailUtils.composeSubject;
 @Service
 public class MailgunService {
     @Autowired
-    @Qualifier("mailgun")
     private RestTemplate restTemplate;
 
     @Value("${mailer.mailgun.baseurl}")
