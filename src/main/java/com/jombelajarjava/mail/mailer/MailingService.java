@@ -1,24 +1,27 @@
 package com.jombelajarjava.mail.mailer;
 
-import com.jombelajarjava.mail.mailer.apis.MailApiService;
-import com.jombelajarjava.mail.mailer.apis.MailgunService;
+import com.jombelajarjava.mail.mailer.apis.Email;
+import com.jombelajarjava.mail.mailer.apis.MailApi;
+import com.jombelajarjava.mail.mailer.forms.ContactForm;
+import com.jombelajarjava.mail.mailer.utils.EmailMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.logging.Logger;
-
 @Service
 public class MailingService {
-    private static final Logger LOG = Logger.getLogger(MailingService.class.getName());
+    @Autowired
+    private EmailMapper mapper;
 
     @Autowired
-    private MailApiService mailApiService;
+    private MailApi mailApi;
 
-    @Autowired
-    private MailgunService mailgunService;
-
-    public void contactUs(Email email) {
-//        mailApiService.send(email);
-        mailgunService.send(email);
+    /**
+     * Compose email from contact form and send it.
+     *
+     * @param form Contact form
+     */
+    public void contactUs(ContactForm form) {
+        Email email = mapper.compose(form);
+        mailApi.send(email);
     }
 }

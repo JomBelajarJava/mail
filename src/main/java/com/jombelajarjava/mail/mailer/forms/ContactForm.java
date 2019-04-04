@@ -1,4 +1,4 @@
-package com.jombelajarjava.mail.mailer;
+package com.jombelajarjava.mail.mailer.forms;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
-public class Email {
+public class ContactForm {
     @NotNull(message = "Nama tidak boleh null")
     @Size(min = 1, max = 100, message = "Nama tidak boleh kosong dan tidak melebihi 100 abjad")
     private String name;

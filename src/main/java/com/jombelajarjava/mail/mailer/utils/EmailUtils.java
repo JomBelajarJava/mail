@@ -1,6 +1,6 @@
 package com.jombelajarjava.mail.mailer.utils;
 
-import com.jombelajarjava.mail.mailer.Email;
+import com.jombelajarjava.mail.mailer.forms.ContactForm;
 
 public final class EmailUtils {
     private EmailUtils() {}
@@ -8,14 +8,14 @@ public final class EmailUtils {
     /**
      * Compose email subject depending on whether user entered their email or not.
      *
-     * @param email Input email
+     * @param form Input form
      * @return Email subject
      */
-    public static String composeSubject(Email email) {
-        if (email.getFrom() != null && !email.getFrom().isEmpty()) {
-            return "[JomBelajarJava] Email dari " + email.getName() + " (" + email.getFrom() + ")";
+    public static String composeSubject(ContactForm form) {
+        if (form.getFrom() != null && !form.getFrom().isEmpty()) {
+            return "[JomBelajarJava] Email dari " + form.getName() + " (" + form.getFrom() + ")";
         } else {
-            return "[JomBelajarJava] Email dari " + email.getName();
+            return "[JomBelajarJava] Email dari " + form.getName();
         }
     }
 }

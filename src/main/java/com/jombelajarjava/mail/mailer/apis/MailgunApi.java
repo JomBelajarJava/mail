@@ -1,22 +1,19 @@
 package com.jombelajarjava.mail.mailer.apis;
 
-import com.jombelajarjava.mail.mailer.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import static com.jombelajarjava.mail.mailer.utils.EmailUtils.composeSubject;
-
 /**
- * Service to call Mailgun API.
+ * Component to call Mailgun API.
  */
-@Service
-public class MailgunService {
+@Component
+public class MailgunApi {
     @Autowired
     private RestTemplate restTemplate;
 
@@ -25,15 +22,6 @@ public class MailgunService {
 
     @Value("${mailer.mailgun.key}")
     private String apiKey;
-
-    @Value("${mailer.mailgun.email}")
-    private String mailgunEmail;
-
-    @Value("${mailer.sender.name}")
-    private String senderName;
-
-    @Value("${mailer.admin.email}")
-    private String adminEmail;
 
     /**
      * Make API call to Mailgun to send the email.
@@ -45,10 +33,10 @@ public class MailgunService {
         headers.setBasicAuth("api", apiKey);
 
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>(4);
-        formData.add("from", senderName + " <" + mailgunEmail + ">");
-        formData.add("to", adminEmail);
-        formData.add("subject", composeSubject(email));
-        formData.add("text", email.getContent());
+        formData.add("from", email.getFromName() + " <" + email.getFromEmail() + ">");
+        formData.add("to", email.getTo());
+        formData.add("subject", email.getSubject());
+        formData.add("text", email.getText());
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(formData, headers);
 
