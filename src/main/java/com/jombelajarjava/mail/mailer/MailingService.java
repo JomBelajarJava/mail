@@ -3,6 +3,7 @@ package com.jombelajarjava.mail.mailer;
 import com.jombelajarjava.mail.mailer.apis.Email;
 import com.jombelajarjava.mail.mailer.apis.MailApi;
 import com.jombelajarjava.mail.mailer.forms.ContactForm;
+import com.jombelajarjava.mail.mailer.forms.DonationForm;
 import com.jombelajarjava.mail.mailer.utils.EmailMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,16 @@ public class MailingService {
      * @param form Contact form
      */
     public void contactUs(ContactForm form) {
+        Email email = mapper.compose(form);
+        mailApi.send(email);
+    }
+
+    /**
+     * Compose email from donation form and send it.
+     *
+     * @param form Donation form
+     */
+    public void informDonation(DonationForm form) {
         Email email = mapper.compose(form);
         mailApi.send(email);
     }

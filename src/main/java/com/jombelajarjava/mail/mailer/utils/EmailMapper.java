@@ -6,6 +6,7 @@ import com.jombelajarjava.mail.mailer.forms.DonationForm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import static com.jombelajarjava.mail.mailer.utils.EmailUtils.composeBody;
 import static com.jombelajarjava.mail.mailer.utils.EmailUtils.composeSubject;
 
 @Component
@@ -45,6 +46,12 @@ public class EmailMapper {
      * @return Email to be sent
      */
     public Email compose(DonationForm form) {
-        return null;
+        return Email.builder()
+                .fromName(senderName)
+                .fromEmail(defaultSenderEmail)
+                .to(adminEmail)
+                .subject(composeSubject(form))
+                .text(composeBody(form))
+                .build();
     }
 }

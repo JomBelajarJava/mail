@@ -1,6 +1,7 @@
 package com.jombelajarjava.mail.mailer;
 
 import com.jombelajarjava.mail.mailer.forms.ContactForm;
+import com.jombelajarjava.mail.mailer.forms.DonationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +15,13 @@ public class MailingController {
     @Autowired
     private MailingService mailingService;
 
+    /**
+     * GET requests.
+     */
+
     @GetMapping("/contact")
     public String contact() {
         return "contact";
-    }
-
-    @PostMapping("/contact")
-    public void submitContact(@Valid @ModelAttribute ContactForm form) {
-        mailingService.contactUs(form);
     }
 
     @GetMapping("/donate")
@@ -29,8 +29,17 @@ public class MailingController {
         return "donate";
     }
 
-    @PostMapping("/donate")
-    public void submitDonate() {
+    /**
+     * POST requests.
+     */
 
+    @PostMapping("/contact")
+    public void submitContact(@Valid @ModelAttribute ContactForm form) {
+        mailingService.contactUs(form);
+    }
+
+    @PostMapping("/donate")
+    public void submitDonate(@Valid @ModelAttribute DonationForm form) {
+        mailingService.informDonation(form);
     }
 }

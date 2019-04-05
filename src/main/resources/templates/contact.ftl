@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hubungi Kami</title>
-    <link rel="stylesheet" href="https://unpkg.com/bulma@0.7.4/css/bulma.min.css">
-  </head>
+  <#assign title="Hubungi Kami">
+  <#include "head.ftl">
   <body>
     <section class="section">
       <form class="container" action="/contact" method="post">
