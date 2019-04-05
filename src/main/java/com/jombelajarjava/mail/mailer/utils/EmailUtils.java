@@ -12,8 +12,8 @@ public final class EmailUtils {
      * @return Email subject
      */
     public static String composeSubject(ContactForm form) {
-        if (form.getFrom() != null && !form.getFrom().isEmpty()) {
-            return "[JomBelajarJava] Email dari " + form.getName() + " (" + form.getFrom() + ")";
+        if (form.getEmail() != null && !form.getEmail().isEmpty()) {
+            return "[JomBelajarJava] Email dari " + form.getName() + " (" + form.getEmail() + ")";
         } else {
             return "[JomBelajarJava] Email dari " + form.getName();
         }

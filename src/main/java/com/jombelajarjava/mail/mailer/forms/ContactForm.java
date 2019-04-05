@@ -8,17 +8,17 @@ import javax.validation.constraints.Size;
 
 @Data
 public class ContactForm {
-    @NotNull(message = "Nama tidak boleh null")
-    @Size(min = 1, max = 100, message = "Nama tidak boleh kosong dan tidak melebihi 100 abjad")
+    @NotNull(message = "name_null_error")
+    @Size(min = 1, max = 100, message = "name_size_error")
     private String name;
 
-    @NotNull(message = "Kandungan email tidak boleh null")
-    @Size(min = 2, max = 2000, message = "Kandungan email tidak boleh kosong dan tidak melebihi 2000 abjad")
+    @NotNull(message = "content_null_error")
+    @Size(min = 2, max = 2000, message = "content_size_error")
     private String content;
 
     @Pattern(
             regexp = "(^$|^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",  // empty string or email
-            message = "Email mesti dalam format email"
+            message = "email_format_error"
     )
-    private String from;
+    private String email;
 }
