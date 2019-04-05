@@ -34,12 +34,14 @@ public class MailingController {
      */
 
     @PostMapping("/contact")
-    public void submitContact(@Valid @ModelAttribute ContactForm form) {
+    public String submitContact(@Valid @ModelAttribute ContactForm form) {
         mailingService.contactUs(form);
+        return "success";
     }
 
     @PostMapping("/donate")
-    public void submitDonate(@Valid @ModelAttribute DonationForm form) {
+    public String submitDonate(@Valid @ModelAttribute DonationForm form) {
         mailingService.informDonation(form);
+        return "success";
     }
 }
