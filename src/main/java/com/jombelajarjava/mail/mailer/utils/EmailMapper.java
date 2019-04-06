@@ -11,15 +11,6 @@ import static com.jombelajarjava.mail.mailer.utils.EmailUtils.composeSubject;
 
 @Component
 public class EmailMapper {
-    @Value("${mailer.sender.name}")
-    private String senderName;
-
-    @Value("${mailer.mailapi.email}")
-    private String defaultSenderEmail;
-
-    @Value("${mailer.mailgun.email}")
-    private String mailgunSenderEmail;
-
     @Value("${mailer.admin.email}")
     private String adminEmail;
 
@@ -31,8 +22,6 @@ public class EmailMapper {
      */
     public Email compose(ContactForm form) {
         return Email.builder()
-                .fromName(senderName)
-                .fromEmail(defaultSenderEmail)
                 .to(adminEmail)
                 .subject(composeSubject(form))
                 .text(form.getContent())
@@ -47,8 +36,6 @@ public class EmailMapper {
      */
     public Email compose(DonationForm form) {
         return Email.builder()
-                .fromName(senderName)
-                .fromEmail(defaultSenderEmail)
                 .to(adminEmail)
                 .subject(composeSubject(form))
                 .text(composeBody(form))

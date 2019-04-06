@@ -8,7 +8,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -26,21 +25,24 @@ public class MailApi {
      *
      * @param email Email to be sent
      */
-    public void send(Email email) {
+    public boolean send(Email email) {
         Properties properties = new Properties();
         Session session = Session.getDefaultInstance(properties, null);
 
         Message message = new MimeMessage(session);
 
         try {
-            message.setFrom(new InternetAddress(email.getFromEmail(), email.getFromName()));
-            message.addRecipient(TO, new InternetAddress(email.getTo()));
+            message.setFrom(new InternetAddress(email.getFrom()));
+            message.setRecipient(TO, new InternetAddress(email.getTo()));
             message.setText(email.getText());
             message.setSubject(email.getSubject());
 
             Transport.send(message);
-        } catch (MessagingException | UnsupportedEncodingException e) {
+
+            return true;
+        } catch (MessagingException e) {
             LOG.warning(e.getMessage());
+            return false;
         }
     }
 }

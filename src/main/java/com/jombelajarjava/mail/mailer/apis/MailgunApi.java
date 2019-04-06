@@ -4,10 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpStatus.OK;
 
 /**
  * Component to call Mailgun API.
@@ -28,18 +32,20 @@ public class MailgunApi {
      *
      * @param email Email to be sent
      */
-    public void send(Email email) {
+    public boolean send(Email email) {
         HttpHeaders headers = new HttpHeaders();
         headers.setBasicAuth("api", apiKey);
 
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>(4);
-        formData.add("from", email.getFromName() + " <" + email.getFromEmail() + ">");
+        formData.add("from", email.getFrom());
         formData.add("to", email.getTo());
         formData.add("subject", email.getSubject());
         formData.add("text", email.getText());
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(formData, headers);
 
-        restTemplate.postForLocation(baseUrl + "/messages", request);
+        ResponseEntity<String> response = restTemplate.exchange(baseUrl + "/messages", POST, request, String.class);
+
+        return response.getStatusCode() == OK;
     }
 }

@@ -35,13 +35,13 @@ public class MailingController {
 
     @PostMapping("/contact")
     public String submitContact(@Valid @ModelAttribute ContactForm form) {
-        mailingService.contactUs(form);
-        return "success";
+        boolean success = mailingService.contactUs(form);
+        return success ? "success" : "failure";
     }
 
     @PostMapping("/donate")
     public String submitDonate(@Valid @ModelAttribute DonationForm form) {
-        mailingService.informDonation(form);
-        return "success";
+        boolean success = mailingService.informDonation(form);
+        return success ? "success" : "failure";
     }
 }
