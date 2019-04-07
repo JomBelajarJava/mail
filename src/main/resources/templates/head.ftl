@@ -5,4 +5,7 @@
   <title>${title}</title>
   <link rel="stylesheet" href="https://unpkg.com/bulma@0.7.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+   .textarea {height: 170px; resize: none;}
+  </style>
 </head>

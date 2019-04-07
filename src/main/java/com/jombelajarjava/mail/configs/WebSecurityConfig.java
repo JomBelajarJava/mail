@@ -11,6 +11,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .headers()
+                .frameOptions()
+                .disable()
+//                .sameOrigin()  // TODO: Use sameOrigin() instead of disable()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/**")
                 .permitAll();

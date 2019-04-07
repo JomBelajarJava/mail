@@ -45,7 +45,7 @@
 
         <!-- EMAIL FIELD -->
         <div class="field">
-          <label class="label">Email (tidak wajib)</label>
+          <label class="label">Email <span class="is-size-7 has-text-weight-normal">(tidak wajib)</span></label>
           <div class="control">
             <input class="input<#if email_format_error??> is-danger</#if>" type="text" name="email" placeholder="Email (tidak wajib)" value="${(donationForm.email)!""}">
           </div>
@@ -58,7 +58,7 @@
 
         <!-- MESSAGE FIELD -->
         <div class="field">
-          <label class="label">Pesanan (tidak wajib)</label>
+          <label class="label">Pesanan <span class="is-size-7 has-text-weight-normal">(tidak wajib)</span></label>
           <div class="control">
             <textarea class="textarea<#if (message_null_error!message_size_error)??> is-danger</#if>" name="message" placeholder="Tulis kandungan email di sini...">${(donationForm.message)!""}</textarea>
           </div>

@@ -27,7 +27,7 @@
 
         <!-- EMAIL FIELD -->
         <div class="field">
-          <label class="label">Email (tidak wajib)</label>
+          <label class="label">Email <span class="is-size-7 has-text-weight-normal">(tidak wajib)</span></label>
           <div class="control">
             <input class="input<#if email_format_error??> is-danger</#if>" type="text" name="email" placeholder="Email (tidak wajib)" value="${(contactForm.email)!""}">
           </div>
