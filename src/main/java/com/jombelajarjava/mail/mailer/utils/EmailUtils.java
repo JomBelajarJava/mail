@@ -41,10 +41,12 @@ public final class EmailUtils {
      * @return Email body
      */
     public static String composeBody(DonationForm form) {
+        String currency = form.getMethod().equals("Paypal") ? "$" : "RM";
+
         return "Nama: " + form.getName() + "\n" +
                 "Email: " + form.getEmail() + "\n" +
                 "Sumbangan melalui: " + form.getMethod() + "\n" +
-                "Jumlah sumbangan: RM " + form.getAmount() + "\n" +
+                "Jumlah sumbangan: " + currency + " " + form.getAmount() + "\n" +
                 "\n" +
                 "Pesanan:" + "\n" +
                 "\n" +
