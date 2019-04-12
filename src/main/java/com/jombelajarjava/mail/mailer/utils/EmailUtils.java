@@ -27,10 +27,14 @@ public final class EmailUtils {
      * @return Email subject
      */
     public static String composeSubject(DonationForm form) {
+        String currency = form.getMethod().equals("Paypal") ? "$" : "RM";
+
         if (form.getEmail() != null && !form.getEmail().isEmpty()) {
-            return "[JomBelajarJava] Sumbangan dari " + form.getName() + " (" + form.getEmail() + ") berjumlah RM " + form.getAmount();
+            return "[JomBelajarJava] Sumbangan dari " + form.getName() + " (" + form.getEmail() + ") " +
+                    "berjumlah " + currency + " " + form.getAmount();
         } else {
-            return "[JomBelajarJava] Sumbangan dari " + form.getName() + " berjumlah RM " + form.getAmount();
+            return "[JomBelajarJava] Sumbangan dari " + form.getName() + " " +
+                    "berjumlah " + currency + " " + form.getAmount();
         }
     }
 
