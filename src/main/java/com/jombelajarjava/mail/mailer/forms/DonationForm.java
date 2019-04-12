@@ -16,6 +16,8 @@ public class DonationForm {
     @Size(max = 2000, message = "message_size_error")
     private String message;
 
+    private String method;
+
     @NotNull(message = "amount_null_error")
     @Pattern(regexp = "^[0-9]+(\\.[0-9]{1,2})?$", message = "amount_format_error")
     private String amount;

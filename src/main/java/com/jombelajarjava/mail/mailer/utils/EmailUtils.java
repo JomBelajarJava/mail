@@ -43,6 +43,7 @@ public final class EmailUtils {
     public static String composeBody(DonationForm form) {
         return "Nama: " + form.getName() + "\n" +
                 "Email: " + form.getEmail() + "\n" +
+                "Sumbangan melalui: " + form.getMethod() + "\n" +
                 "Jumlah sumbangan: RM " + form.getAmount() + "\n" +
                 "\n" +
                 "Pesanan:" + "\n" +

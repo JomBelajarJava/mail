@@ -13,8 +13,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .headers()
                 .frameOptions()
-                .disable()
-//                .sameOrigin()  // TODO: Use sameOrigin() instead of disable()
+                .sameOrigin()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/**")

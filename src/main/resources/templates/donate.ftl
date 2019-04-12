@@ -25,11 +25,25 @@
           </#if>
         </div>
 
+        <!-- DONATION METHOD FIELD -->
+        <div class="field">
+          <label class="label">Sumbangan melalui</label>
+          <div class="control">
+            <div class="select">
+              <select name="method">
+                <option>Maybank</option>
+                <option>Paypal</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
         <!-- AMOUNT FIELD -->
         <div class="field">
           <label class="label">Jumlah sumbangan</label>
-          <div class="control">
+          <div class="control has-icons-left">
             <input class="input<#if (amount_null_error!amount_format_error)??> is-danger</#if>" type="text" name="amount" placeholder="Jumlah sumbangan" value="${(donationForm.amount)!"5.00"}">
+            <span id="currency" class="icon is-left has-text-grey">RM</span>
           </div>
           <#if amount_null_error??>
             <p class="help is-danger">
@@ -82,5 +96,20 @@
         </div>
       </form>
     </section>
+    <script>
+     var currency = document.querySelector('#currency');
+
+     document
+         .querySelector('select[name="method"]')
+         .addEventListener('change', function (evt) {
+             switch (evt.target.value) {
+                 case 'Paypal':
+                     currency.textContent = '$';
+                     break;
+                 default:
+                     currency.textContent = 'RM';
+             }
+         });
+    </script>
   </body>
 </html>
